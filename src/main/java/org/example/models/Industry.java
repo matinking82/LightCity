@@ -3,7 +3,7 @@ package org.example.models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Industry extends Property{
+public abstract class Industry extends Property{
     private String title;
     private float income;
 
@@ -62,4 +62,7 @@ public class Industry extends Property{
         });
         thread.start();
     }
+
+    abstract
+    public void menu();
 }
