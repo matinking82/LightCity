@@ -3,6 +3,8 @@ package org.example;
 import org.example.Utils.Console;
 import org.example.models.User;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -13,19 +15,23 @@ public class Menu {
             showMenu();
     }
     public static void showMenu(){
-        mainMenu();
-        String next = scanner.next();
-        if (next.equals("1")) {
-            game.continueGame(loginMenu());
-        }else if(next.equals("2")){
-            game.startGame(loginMenu());
-        }else if (next.equals("3")){
-            joinServer();
-        }else if (next.equals("4"))
-            System.exit(0);
+            mainMenu();
+            String next = scanner.next();
+            switch (next) {
+                case "1" -> game.continueGame(loginMenu());
+                case "2" -> game.startGame(loginMenu());
+                case "3" -> joinServer();
+                case "4" -> System.exit(0);
+            }
     }
     public static void mainMenu(){
+        List<String> items = new ArrayList<>();
+        items.add("Continue");
+        items.add("Start a new game");
+        items.add("Join Server");
+        items.add("Exit");
 
+        Console.ShowMenu(items);
     }
 
     public static User loginMenu(){
