@@ -12,8 +12,8 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class ClothShop extends Industry {
-    private static final float INCOME = 0.5f;
-    private static final float EMPLOYEE_INCOME = 0.02f;
+    private static final float INCOME = 0.8f;
+    private static final float EMPLOYEE_INCOME = 0.025f;
 
     public ClothShop(String title, Property property, Character character) {
         super(title, property, character, EMPLOYEE_INCOME);
