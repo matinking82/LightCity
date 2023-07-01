@@ -23,7 +23,7 @@ public class Bank extends Industry implements BankInterface {
     }
 
     public BankAccount newAccount(String username,String password){
-        BankAccount bankAccount = new BankAccount(username,password,0,new Date());
+        BankAccount bankAccount = new BankAccount(username,password,10f,new Date());
         accounts.add(bankAccount);
         return bankAccount;
     }
@@ -40,5 +40,10 @@ public class Bank extends Industry implements BankInterface {
             return "";
         }
         return "Only Manager can see Bank detail";
+    }
+
+    @Override
+    public void menu() {
+        //TODO
     }
 }

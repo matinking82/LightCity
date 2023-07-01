@@ -8,12 +8,12 @@ import java.sql.*;
 
 public class Database {
 
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/lightcity";
+    static final String JDBC_DRIVER = "org.sqlite.JDBC";
+    static final String DB_URL = "jdbc:sqlite:sqlite/db/office.db";
 
     // Database credentials
-    static final String USER = "your_username";
-    static final String PASS = "your_password";
+//    static final String USER = "your_username";
+//    static final String PASS = "your_password";
 
 
     private Connection conn;
@@ -21,8 +21,10 @@ public class Database {
     public Database() {
         try {
             Class.forName(JDBC_DRIVER);
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
             System.out.println("Connecting to database...");
+            conn = DriverManager.getConnection(DB_URL);
+            System.out.println("Connected");
+            createTables();
         } catch (Exception exp) {
             System.out.println("Database Exception : \n" + exp.toString());
             System.exit(0);

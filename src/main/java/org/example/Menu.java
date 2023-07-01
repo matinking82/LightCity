@@ -4,6 +4,7 @@ import org.example.Utils.Console;
 import org.example.models.User;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -46,7 +47,8 @@ public class Menu {
             if (db.loginGame(user)){
                 return user;
             }else {
-                System.out.println("LoginFailed");
+                db.registerGame(user);
+                return user;
             }
         }
     }
