@@ -51,8 +51,7 @@ public class Municipality implements MunicipalityInterface {
         for (Property p :
                 properties) {
             if (p.getCoordinate()[0] == coordinate[0] && p.getCoordinate()[1] == coordinate[1]){
-                sellProperty(p);
-                p.setOwner(buyer);
+                sellProperty(p,buyer);
                 return p;
             }
         }
@@ -60,10 +59,8 @@ public class Municipality implements MunicipalityInterface {
     }
 
     @Override
-    public void sellProperty(Property property) {
-        Character prevOwner = property.getOwner();
-        //TODO
-        property.setOwner(null);
+    public void sellProperty(Property property,Character buyer) {
+        property.setOwner(buyer);
     }
 
     @Override
@@ -77,5 +74,15 @@ public class Municipality implements MunicipalityInterface {
 
     public List<Property> getProperties(){
         return properties;
+    }
+
+    public Property getProperty(float[] coordinate){
+        for (Property p:
+             properties) {
+            if (Arrays.compare(p.getCoordinate(),coordinate)==0){
+                return p;
+            }
+        }
+        return null;
     }
 }
