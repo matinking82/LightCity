@@ -39,14 +39,23 @@ public class City implements CityInterface {
         Hospital hospital = new Hospital("shohada hospital",municipality
                 .buyProperty(character,new float[]{10,5}),character);
 
+        ClothShop clothShop = new ClothShop("lebasi",municipality
+                .buyProperty(character,new float[]{10,10}),character);
+
+        Barber barber = new Barber("arayeshgah",municipality
+                .buyProperty(character,new float[]{11,3}),character);
+
+
         bankSystem = new Bank(municipality.buyProperty(character,new float[]{0f,0f}), character);
         BankAccount newAccount = bankSystem.newAccount(userinfo.getUsername(), userinfo.getPassword());
         character.setAccount(newAccount);
 
         root = character;
-        
+
         industries.add(fastFoodShop);
         industries.add(hospital);
+        industries.add(clothShop);
+        industries.add(barber);
         industries.add(bankSystem);
         beginGame(character);
     }

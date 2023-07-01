@@ -1,11 +1,13 @@
 package org.example.defualtSystem;
 
+import org.example.Utils.PlayInfo;
 import org.example.interfaces.BankInterface;
 import org.example.models.*;
 import org.example.models.Character;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Bank extends Industry implements BankInterface {
 
@@ -44,6 +46,9 @@ public class Bank extends Industry implements BankInterface {
 
     @Override
     public void menu() {
-        //TODO
+        System.out.println("Welcome to "+getTitle());
+        System.out.println("Your Balance: "+ PlayInfo.playCharacter.getAccount().getMoney());
+        System.out.println("press enter to return");
+        new Scanner(System.in).nextLine();
     }
 }
