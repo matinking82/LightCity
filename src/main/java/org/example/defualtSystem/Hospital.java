@@ -12,10 +12,10 @@ public class Hospital extends Industry {
     private static final float INCOME = 0.5f;
     private static final float EMPLOYEE_INCOME = 0.02f;
 
-    private Map<Character,float> payments;
+    private Map<Character,Float> payments;
     public Hospital(String title, Property property, Character character) {
         super(title, property, character,EMPLOYEE_INCOME);
-        payments = new HashMap<Character,float>();
+        payments = new HashMap<Character,Float>();
     }
     @Override
     public void menu() {

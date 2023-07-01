@@ -35,11 +35,18 @@ public class City implements CityInterface {
         characters.add(character);
         FastFoodShop fastFoodShop = new FastFoodShop("pizza forooshi",municipality
                 .buyProperty(character,new float[]{5,5}),character);
+
+        Hospital hospital = new Hospital("shohada hospital",municipality
+                .buyProperty(character,new float[]{10,5}),character);
+
         bankSystem = new Bank(municipality.buyProperty(character,new float[]{0f,0f}), character);
         BankAccount newAccount = bankSystem.newAccount(userinfo.getUsername(), userinfo.getPassword());
         character.setAccount(newAccount);
 
+        root = character;
+        
         industries.add(fastFoodShop);
+        industries.add(hospital);
         industries.add(bankSystem);
         beginGame(character);
     }
@@ -100,15 +107,42 @@ public class City implements CityInterface {
         System.out.println("Job: "
                 +((PlayInfo.playCharacter.getJob()==null)? "Unemployed":PlayInfo.playCharacter.getJob().getTitle()));
         System.out.println("Balance: "+PlayInfo.playCharacter.getAccount().getMoney());
+        System.out.println("------------------------------");
+        System.out.println("My Properties:");
+        for (Property p :
+                municipality.getProperties()) {
+            if (p.getOwner() == PlayInfo.playCharacter){
+                System.out.println("Property at ["+p.getCoordinate()[0]+","+p.getCoordinate()[1]+"] and size of:["
+                        +p.getScales()[0]+","+p.getScales()[1]+"]");
+            }
+        }
         System.out.println("Press enter to return..");
         new Scanner(System.in).nextLine();
     }
 
     private void ProcessLocation() {
+            boolean check = true;
             for (Industry i :
                 industries) {
                 if (Arrays.compare(PlayInfo.currentCoordinates,i.getCoordinate())==0) {
+                    check = false;
                     i.menu();
+                }
+            }
+
+            if (check){
+                if (municipality.getProperty(PlayInfo.currentCoordinates).getOwner()!=PlayInfo.playCharacter){
+                    System.out.println("There is nothing here\ndo you want to buy this property for 100'000'000T?(y/n)");
+                    String ch = new Scanner(System.in).nextLine();
+                    if (ch.startsWith("y")){
+                        PlayInfo.playCharacter.getAccount().withdraw(root,0.1f);
+                        municipality.buyProperty(PlayInfo.playCharacter,PlayInfo.currentCoordinates);
+                        System.out.println("Bought Successfully\npress enter to continue");
+                        new Scanner(System.in).nextLine();
+                    }
+                }else {
+                    System.out.println("this is your property\npress enter to continue");
+                    new Scanner(System.in).nextLine();
                 }
             }
     }
